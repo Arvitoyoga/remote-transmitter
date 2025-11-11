@@ -1,9 +1,9 @@
 #include "kalman.h"
 
-float Q[NUM_VAR] = {0.8, 0.8, 0.8, 0.8, 0.8, 0.8}; // Process noise
-float R[NUM_VAR] = {2, 2, 2, 2, 2, 2};             // Measurement noise
-float X[NUM_VAR] = {0, 0, 0, 0, 0, 0};             // State estimate
-float P[NUM_VAR] = {1, 1, 1, 1, 1, 1};             // Estimation error covariance
+float Q[NUM_VAR] = {0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8}; // Process noise
+float R[NUM_VAR] = {2, 2, 2, 2, 2, 2, 2};             // Measurement noise
+float X[NUM_VAR] = {0, 0, 0, 0, 0, 0, 2};             // State estimate
+float P[NUM_VAR] = {1, 1, 1, 1, 1, 1, 1};             // Estimation error covariance
 float K[NUM_VAR];                                  // Kalman gain
 
 float kalmanFilterMulti(float measurement, int index) {

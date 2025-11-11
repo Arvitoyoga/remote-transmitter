@@ -7,15 +7,13 @@
 #include "modules/utils.c"  
 #include "modules/kalman.h"
 #include "modules/elrs.h"
-#include "iot_button.h"
+#include "modules/button.h"
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include "driver/spi_master.h"
 
 #define TAG "main"
-
-#define DRONE_COUNT 2
 
 #define INTERVALMS 3 * 1000
 
@@ -53,27 +51,38 @@
 #define REG_ACCEL_CONFIG2   0x1D
 #define REG_CONFIG          0x1A
 
-#define MECHANISM_CHANGE 10
-
 spi_device_handle_t spi_handleA;
 spi_device_handle_t spi_handleB;
 
-button_handle_t arming_button;
-button_handle_t switch_id_button;
-button_handle_t mechanism_btn;
-button_handle_t failsafe_btn;
-button_handle_t cam_switch_btn;
-button_handle_t increment_mechanism_btn;
-button_handle_t decrement_mechanism_btn;
-
-int8_t current_id = 1;
 uint16_t channels[16] = { 0 };
 
+#define DRONE_COUNT 2
+int8_t current_id = 1;
+int8_t shift = 0;
 bool should_transmit = 0;
 bool should_switch = 1;
 
-uint16_t max_mechanism_value = 1378;
+//////////////////////////////////////BUTTON////////////////////////////////////////////////////
+void button_control () {
+    while(1) {
+    bool L_Point = button_get_state(4);
+    bool L_Mid = button_get_state(5);
+    bool L_Ring = button_get_state(6);
+    bool L_Little = button_get_state(7);
 
+    uint8_t val = (L_Little << 3) | (L_Ring << 2) | (L_Mid << 1) | (L_Point << 0);
+    switch(val) {
+    case 0b1110: shift = 1; break;  
+    case 0b1101: shift = 2; break;  
+    case 0b1011: shift = 3; break;  
+    case 0b0111: shift = 4; break; 
+    default: shift = 0;
+}
+    vTaskDelay(pdMS_TO_TICKS(10));
+    }
+}
+
+//////////////////////////////////////IMU///////////////////////////////////////////////////////
 void mpu_write_byte(spi_device_handle_t handle, uint8_t reg, uint8_t data) {
     spi_transaction_t t;
     memset(&t, 0, sizeof(t));
@@ -103,94 +112,6 @@ void mpu_read_bytes(spi_device_handle_t handle, uint8_t reg, uint8_t *buffer, si
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "SPI Read from reg 0x%02X failed", reg);
     }
-}
-
-void toggle_channel(void *arg, void *data) {
-    crsf_channels_type channel = (crsf_channels_type)data;
-    channels[channel] = (channels[channel] <= 1000) * MAX_CHANNEL_VALUE;
-    ESP_LOGI("gpio", "channel %d = %d", channel, channels[channel]);
-}
-
-void toggle_channel_mechanism() {
-    channels[MECHANISM_CHANNEL] = (channels[MECHANISM_CHANNEL] <= 100) * max_mechanism_value;
-    ESP_LOGI("gpio", "channel %d = %d", MECHANISM_CHANNEL, channels[MECHANISM_CHANNEL]);
-}
-
-
-void increment_max_mechanism() {
-    max_mechanism_value += MECHANISM_CHANGE;
-    ESP_LOGI("gpio", "max mech = %d", max_mechanism_value);
-}
-
-void decrement_max_mechanism() {
-    max_mechanism_value -= MECHANISM_CHANGE;
-    ESP_LOGI("gpio", "max mech = %d", max_mechanism_value);
-}
-
-void toggle_arming() {
-    if (iot_button_get_ticks_time(arming_button) < 500) return;
-
-    channels[ARMING_CHANNEL] = (channels[ARMING_CHANNEL] <= 1000) * MAX_CHANNEL_VALUE;
-    ESP_LOGI("gpio", "channel %d = %d", ARMING_CHANNEL, channels[ARMING_CHANNEL]);
-}
-
-
-void switch_id_cb() {
-    if (iot_button_get_ticks_time(switch_id_button) < 500) return;
-
-    should_switch = 1;
-    current_id++;
-    current_id %= DRONE_COUNT;
-    ESP_LOGI("gpio", "Switch id to %d", current_id);
-}
-static void timer_callback(void *arg) {
-    should_transmit = 1;
-}
-
-void timer_init() {
-    const esp_timer_create_args_t timer_args = {
-        .callback = &timer_callback,
-        .name = "timer_callback"
-    };
-
-    esp_timer_handle_t timer_periodic;
-    ESP_ERROR_CHECK(esp_timer_create(&timer_args, &timer_periodic));
-    ESP_ERROR_CHECK(esp_timer_start_periodic(timer_periodic, INTERVALMS));
-}
-
-void gpio_init() {
-    arming_button = init_debounced_btn(RIGHT_RING, BUTTON_PRESS_UP, toggle_arming, NULL, 200);
-    cam_switch_btn = init_debounced_btn(RIGHT_MIDDLE,
-        BUTTON_PRESS_DOWN,
-        toggle_channel,
-        (void *)CAMSWITCH_CHANNEL,
-        200);
-    mechanism_btn = init_debounced_btn(RIGHT_POINT,
-        BUTTON_PRESS_DOWN,
-        toggle_channel_mechanism,
-        NULL,
-        200);
-    switch_id_button = init_debounced_btn(LEFT_RING, BUTTON_PRESS_UP, switch_id_cb, NULL, 200);
-    failsafe_btn = init_debounced_btn(LEFT_MIDDLE, BUTTON_PRESS_UP, toggle_channel, (void *)FAILSAFE_CHANNEL, 200);
-    increment_mechanism_btn = init_debounced_btn(RIGHT_LITTLE, BUTTON_PRESS_DOWN, increment_max_mechanism, NULL, 200);
-    decrement_mechanism_btn = init_debounced_btn(LEFT_LITTLE, BUTTON_PRESS_DOWN, decrement_max_mechanism, NULL, 200);
-
-}
-
-void uart_init() {
-    const uart_config_t uart_config = {
-        .baud_rate = 921600,
-        .data_bits = UART_DATA_8_BITS,
-        .parity = UART_PARITY_DISABLE,
-        .stop_bits = UART_STOP_BITS_1,
-        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
-    };
-
-    uart_driver_install(UART_NUM, 1024, 1024, 0, NULL, 0);
-    uart_param_config(UART_NUM, &uart_config);
-    uart_set_pin(UART_NUM, TX_PIN, RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
-    uart_set_mode(UART_NUM, UART_MODE_UART);
-    uart_set_line_inverse(UART_NUM, UART_SIGNAL_TXD_INV || UART_SIGNAL_RXD_INV);
 }
 
 void left_imu_task() {
@@ -255,7 +176,6 @@ void left_imu_task() {
         channels[YAW] = mapFloatToInt(yaw, 21, 60, 1000, 2000);
         }
 
-        //channels[FAILSAFE_CHANNEL] = MAX_CHANNEL_VALUE;
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
@@ -302,7 +222,7 @@ void right_imu_task() {
         float F5 = kalmanFilterMulti(ax, 4);
         float F6 = kalmanFilterMulti(az, 5);
 
-        float roll  = atan2(F4, F6) * 180.0 / M_PI;
+        float roll =atan2(F4, F6) * 180.0 / M_PI;
         float pitch = atan2(-F5, sqrt(F4 * F4 + F6 * F6)) * 180.0 / M_PI;
 
         if (roll >= -20 && roll <=20) {
@@ -325,17 +245,44 @@ void right_imu_task() {
         channels[PITCH] = mapFloatToInt(pitch, 21, 60, 1000, 2000);
         }
 
-        
-        //channels[FAILSAFE_CHANNEL] = MAX_CHANNEL_VALUE;
+        int R=kalmanFilterMulti(channels[ROLL],6);
+        ESP_LOGI("OUT", "RAW: %d | OK: %d", channels[ROLL], R);
+
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
 
-void logS() {
-    while(1) {
-    ESP_LOGI("ELRS", "THROTTLE = %d | ROLL = %d | YAW = %d | PITCH = %d", channels[THROTTLE], channels[ROLL],channels[YAW], channels[PITCH]);
-    vTaskDelay(pdMS_TO_TICKS(10));
-    }
+////////////////////////////////////TIMER///////////////////////////////////////////////////////
+static void timer_callback(void *arg) {
+    should_transmit = 1;
+}
+
+void timer_init() {
+    const esp_timer_create_args_t timer_args = {
+        .callback = &timer_callback,
+        .name = "timer_callback"
+    };
+
+    esp_timer_handle_t timer_periodic;
+    ESP_ERROR_CHECK(esp_timer_create(&timer_args, &timer_periodic));
+    ESP_ERROR_CHECK(esp_timer_start_periodic(timer_periodic, INTERVALMS));
+}
+
+//////////////////////////////////////ELRS//////////////////////////////////////////////////////
+void uart_init() {
+    const uart_config_t uart_config = {
+        .baud_rate = 921600,
+        .data_bits = UART_DATA_8_BITS,
+        .parity = UART_PARITY_DISABLE,
+        .stop_bits = UART_STOP_BITS_1,
+        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+    };
+
+    uart_driver_install(UART_NUM, 1024, 1024, 0, NULL, 0);
+    uart_param_config(UART_NUM, &uart_config);
+    uart_set_pin(UART_NUM, TX_PIN, RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    uart_set_mode(UART_NUM, UART_MODE_UART);
+    uart_set_line_inverse(UART_NUM, UART_SIGNAL_TXD_INV || UART_SIGNAL_RXD_INV);
 }
 
 void elrs_task(void *pvParameters) {
@@ -356,12 +303,29 @@ void elrs_task(void *pvParameters) {
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 }
- 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void logS() {
+    while(1) {
+    ESP_LOGI("OUT", "Roll: %d | Pitch: %d", channels[ROLL],channels[PITCH]);
+    vTaskDelay(pdMS_TO_TICKS(10));
+    }
+}
+
 void app_main(void) {
-    gpio_init();
     uart_init();
     timer_init();
-    
+    button_init();
+
+    button_register(RIGHT_POINT);
+    button_register(RIGHT_MIDDLE);
+    button_register(RIGHT_RING);
+    button_register(RIGHT_LITTLE);
+    button_register(LEFT_POINT);
+    button_register(LEFT_MIDDLE);
+    button_register(LEFT_RING);
+    button_register(LEFT_LITTLE);
+
     spi_bus_config_t bus_config = {
         .sclk_io_num = PIN_NUM_CLK,
         .mosi_io_num = PIN_NUM_MOSI,
@@ -395,6 +359,7 @@ void app_main(void) {
 
     xTaskCreatePinnedToCore(left_imu_task, "left_imu", 4096, NULL, 4, NULL, 1);
     xTaskCreatePinnedToCore(right_imu_task, "right_imu", 4096, NULL, 4, NULL, 1);
-    xTaskCreatePinnedToCore(logS, "log", 4096, NULL, 4, NULL, 1);
+    // xTaskCreatePinnedToCore(logS, "log", 4096, NULL, 4, NULL, 1);
+    xTaskCreatePinnedToCore(button_control, "button", 4096, NULL, 4, NULL, 1);
     xTaskCreatePinnedToCore(elrs_task, "elrs_writer", 4096, NULL, tskIDLE_PRIORITY, NULL, 0);
 }
