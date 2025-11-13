@@ -5,9 +5,10 @@
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "modules/utils.c"  
-#include "modules/kalman.h"
 #include "modules/elrs.h"
 #include "modules/button.h"
+#include "modules/filter.h"
+#include "modules/imu.h"
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -36,39 +37,37 @@
 #define LEFT_RING GPIO_NUM_26
 #define LEFT_LITTLE GPIO_NUM_25
 
-#define SPI_BUS         SPI2_HOST
-#define PIN_NUM_CLK     18
-#define PIN_NUM_MOSI    23
-#define PIN_NUM_MISO    19
-#define PIN_NUM_CSA      5
-#define PIN_NUM_CSB      4
+#define DRONE_COUNT 3
 
-#define REG_ACCEL_XOUT_H    0x3B
-#define REG_PWR_MGMT_1      0x6B
-#define REG_WHO_AM_I        0x75
-#define REG_USER_CTRL       0x6A
-#define REG_ACCEL_CONFIG    0x1C
-#define REG_ACCEL_CONFIG2   0x1D
-#define REG_CONFIG          0x1A
-
-spi_device_handle_t spi_handleA;
-spi_device_handle_t spi_handleB;
-
+filter_t imu_left;
+filter_t imu_right;
 uint16_t channels[16] = { 0 };
 
-#define DRONE_COUNT 2
 int8_t current_id = 1;
 int8_t shift = 0;
+int16_t max_mechanism_value = 1378;
+imu_data_t imuR, imuL;
+
 bool should_transmit = 0;
 bool should_switch = 1;
+
+bool R_Point;
+bool R_Mid;
+bool R_Ring;
+bool R_Little;
+bool L_Point;
+bool L_Mid;
+bool L_Ring;
+bool L_Little;
+
 
 //////////////////////////////////////BUTTON////////////////////////////////////////////////////
 void button_control () {
     while(1) {
-    bool L_Point = button_get_state(4);
-    bool L_Mid = button_get_state(5);
-    bool L_Ring = button_get_state(6);
-    bool L_Little = button_get_state(7);
+    L_Point = button_get_state(4);
+    L_Mid = button_get_state(5);
+    L_Ring = button_get_state(6);
+    L_Little = button_get_state(7);
 
     uint8_t val = (L_Little << 3) | (L_Ring << 2) | (L_Mid << 1) | (L_Point << 0);
     switch(val) {
@@ -77,88 +76,101 @@ void button_control () {
     case 0b1011: shift = 3; break;  
     case 0b0111: shift = 4; break; 
     default: shift = 0;
-}
+    }
+
+    switch (shift)
+    {
+    case 0:
+        R_Point = button_check_hold_release(0,500,500);
+        channels[ARMING_CHANNEL] = (R_Point == 0) ? 1000 : MAX_CHANNEL_VALUE;
+
+        R_Mid = button_toggle(1);
+        channels[CAMSWITCH_CHANNEL] = (R_Mid == 0) ? 1000 : MAX_CHANNEL_VALUE;
+
+        R_Ring = button_toggle(2);
+        channels[FAILSAFE_CHANNEL] = (R_Ring == 0) ? 1000 : MAX_CHANNEL_VALUE;
+
+        R_Little = button_toggle_delay(3,10);
+        if(R_Little==0) {
+            should_switch = 1;
+            current_id++;
+            current_id %= DRONE_COUNT;
+        }
+        break;
+
+
+        case 1:
+        {
+        R_Point = button_get_state(0);
+        if(R_Point==0) {max_mechanism_value++;}
+
+        R_Mid = button_get_state(1);
+        if(R_Mid==0) {max_mechanism_value--;}
+
+        R_Ring = button_toggle_delay(2,10);
+        if(R_Ring==0) {
+        channels[MECHANISM_CHANNEL] = (channels[MECHANISM_CHANNEL] <= 100) * max_mechanism_value;
+        }
+        }
+        break;
+        
+        default:
+        break;
+    }
+
     vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
 
 //////////////////////////////////////IMU///////////////////////////////////////////////////////
-void mpu_write_byte(spi_device_handle_t handle, uint8_t reg, uint8_t data) {
-    spi_transaction_t t;
-    memset(&t, 0, sizeof(t));
+void imu_task(void *pvParameters)
+{
+    imu_init();
+    filter_init(&imu_right,500.0f);
+    filter_set_gains(&imu_right,1.0f, 0.002f);
+    filter_set_deadzone(&imu_right,1.0f);
 
-    t.flags = SPI_TRANS_USE_TXDATA; 
-    t.cmd = reg & 0x7F;             
-    t.tx_data[0] = data;
-    t.length = 8;                
+    filter_init(&imu_left,500.0f);
+    filter_set_gains(&imu_left,1.0f, 0.002f);
+    filter_set_deadzone(&imu_left,1.0f);
 
-    esp_err_t ret = spi_device_polling_transmit(handle, &t);
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "SPI Write to reg 0x%02X failed", reg);
-    }
-}
+    while (1)
+    {
+    imu_read(IMU_LEFT, &imuR);
+    imu_read(IMU_RIGHT, &imuL);
 
-void mpu_read_bytes(spi_device_handle_t handle, uint8_t reg, uint8_t *buffer, size_t len) {
-    spi_transaction_t t;
-    memset(&t, 0, sizeof(t));
+    // update filter
+    filter_update_raw(&imu_right,imuR.ax, imuR.ay, imuR.az, imuR.gx, imuR.gy, imuR.gz);
+    filter_update_raw(&imu_left,imuL.ax, imuL.ay, imuL.az, imuL.gx, imuL.gy, imuL.gz);
 
-    t.cmd = reg | 0x80;           
-    t.length = 8;                  
-    t.rxlength = len * 8;
-    t.flags = 0;      
-    t.rx_buffer = buffer;
+    float roll, pitch, ncA;
+    filter_get_euler(&imu_right,&roll, &pitch, &ncA);
+    float yaw, throttle, ncB;
+    filter_get_euler(&imu_left,&yaw, &throttle, &ncB);
 
-    esp_err_t ret = spi_device_polling_transmit(handle, &t);
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "SPI Read from reg 0x%02X failed", reg);
-    }
-}
+        // Mapping ROLL
+        if (roll >= -10 && roll <= 10) {
+            channels[ROLL] = 1000; 
+        }
+        else if (roll >= -60 && roll <= -21) {
+            channels[ROLL] = mapFloatToInt(roll, -60, -21, 0, 1000);
+        }
+        else if (roll >= 21 && roll <= 60) {
+            channels[ROLL] = mapFloatToInt(roll, 21, 60, 1000, 2000);
+        }
 
-void left_imu_task() {
-    uint8_t buffer[14];
-    ESP_LOGI(TAG, "Starting MPU-6500 Initialization...");
-    
-    mpu_write_byte(spi_handleA, REG_PWR_MGMT_1, 0x80);
-    vTaskDelay(pdMS_TO_TICKS(100));
+        // Mapping PITCH
+        if (pitch >= -10 && pitch <= 10) {
+            channels[PITCH] = 1000; 
+        }
+        else if (pitch >= -60 && pitch <= -21) {
+            channels[PITCH] = mapFloatToInt(pitch, -60, -21, 0, 1000);
+        }
+        else if (pitch >= 21 && pitch <= 60) {
+            channels[PITCH] = mapFloatToInt(pitch, 21, 60, 1000, 2000);
+        }
 
-    mpu_write_byte(spi_handleA, REG_USER_CTRL, 0x10);  
-    mpu_write_byte(spi_handleA, REG_PWR_MGMT_1, 0x01); 
-    vTaskDelay(pdMS_TO_TICKS(50));
-
-    uint8_t whoA;
-    mpu_read_bytes(spi_handleA, REG_WHO_AM_I, &whoA, 1);
-    if (whoA != 0x70) {
-        ESP_LOGE(TAG, "WhoAmIA check failed. Expected 0x70, Found: 0x%02X", whoA);
-        vTaskDelete(NULL);
-    }
-    ESP_LOGI(TAG, "WhoAmIA check passed. Found MPU-6500 (0x%02X)", whoA);
-    mpu_write_byte(spi_handleA, REG_ACCEL_CONFIG, 0x08);
-    float accel_scale = 8192.0f; 
-    
-    mpu_write_byte(spi_handleA, REG_ACCEL_CONFIG2, 0x03);
-
-    mpu_write_byte(spi_handleA, REG_USER_CTRL, 0x80);
-
-    ESP_LOGI(TAG, "MPU-6500 configured successfully. Starting data acquisition.");
-
-    while(1) {
-        mpu_read_bytes(spi_handleA, REG_ACCEL_XOUT_H, buffer, 14);
-
-        int16_t ax_raw = (int16_t)(buffer[0] << 8 | buffer[1]);
-        int16_t ay_raw = (int16_t)(buffer[2] << 8 | buffer[3]);
-        int16_t az_raw = (int16_t)(buffer[4] << 8 | buffer[5]);
-
-        float ax = (float)ax_raw / accel_scale;
-        float ay = (float)ay_raw / accel_scale;
-        float az = (float)az_raw / accel_scale;
-
-        float F1 = kalmanFilterMulti(ay, 0);
-        float F2 = kalmanFilterMulti(ax, 1);
-        float F3 = kalmanFilterMulti(az, 2);
-
-        float yaw  = atan2(F1, F3) * 180.0 / M_PI;
-        float throttle = atan2(-F2, sqrt(F1 * F1 + F3 * F3)) * 180.0 / M_PI;
-
+        // Mapping THROTTLE
         if (throttle <= -50) {
          channels[THROTTLE] = 0; 
         }
@@ -166,7 +178,8 @@ void left_imu_task() {
         channels[THROTTLE] = mapFloatToInt(throttle, -51, 50, 0, MAX_CHANNEL_VALUE);
         }
 
-        if (yaw >= -20 && yaw <=20) {
+        // Mapping YAW
+        if (yaw >= -10 && yaw <=10) {
          channels[YAW] = 1000; 
         }
         else if (yaw >=-60 && yaw <=-21) {
@@ -176,79 +189,8 @@ void left_imu_task() {
         channels[YAW] = mapFloatToInt(yaw, 21, 60, 1000, 2000);
         }
 
-        vTaskDelay(pdMS_TO_TICKS(10));
-    }
-}
 
-void right_imu_task() {
-    uint8_t buffer[14];
-    ESP_LOGI(TAG, "Starting MPU-6500 Initialization...");
-    
-    mpu_write_byte(spi_handleB, REG_PWR_MGMT_1, 0x80);
-    vTaskDelay(pdMS_TO_TICKS(100));
-
-    mpu_write_byte(spi_handleB, REG_USER_CTRL, 0x10);  
-    mpu_write_byte(spi_handleB, REG_PWR_MGMT_1, 0x01); 
-    vTaskDelay(pdMS_TO_TICKS(50));
-
-    uint8_t whoB;
-    mpu_read_bytes(spi_handleB, REG_WHO_AM_I, &whoB, 1);
-    if (whoB != 0x70) {
-        ESP_LOGE(TAG, "WhoAmIB check failed. Expected 0x70, Found: 0x%02X", whoB);
-        vTaskDelete(NULL);
-    }
-    ESP_LOGI(TAG, "WhoAmIB check passed. Found MPU-6500 (0x%02X)", whoB);
-    mpu_write_byte(spi_handleB, REG_ACCEL_CONFIG, 0x08);
-    float accel_scale = 8192.0f; 
-    
-    mpu_write_byte(spi_handleB, REG_ACCEL_CONFIG2, 0x03);
-
-    mpu_write_byte(spi_handleB, REG_USER_CTRL, 0x80);
-
-    ESP_LOGI(TAG, "MPU-6500 configured successfully. Starting data acquisition.");
-
-    while(1) {
-        mpu_read_bytes(spi_handleB, REG_ACCEL_XOUT_H, buffer, 14);
-
-        int16_t ax_raw = (int16_t)(buffer[0] << 8 | buffer[1]);
-        int16_t ay_raw = (int16_t)(buffer[2] << 8 | buffer[3]);
-        int16_t az_raw = (int16_t)(buffer[4] << 8 | buffer[5]);
-
-        float ax = (float)ax_raw / accel_scale;
-        float ay = (float)ay_raw / accel_scale;
-        float az = (float)az_raw / accel_scale;
-
-        float F4 = kalmanFilterMulti(ay, 3);
-        float F5 = kalmanFilterMulti(ax, 4);
-        float F6 = kalmanFilterMulti(az, 5);
-
-        float roll =atan2(F4, F6) * 180.0 / M_PI;
-        float pitch = atan2(-F5, sqrt(F4 * F4 + F6 * F6)) * 180.0 / M_PI;
-
-        if (roll >= -20 && roll <=20) {
-         channels[ROLL] = 1000; 
-        }
-        else if (roll >=-60 && roll <=-21) {
-        channels[ROLL] = mapFloatToInt(roll, -50, -21, 0, 1000);
-        }
-        else if (roll >=21 && roll <=60) {
-        channels[ROLL] = mapFloatToInt(roll, 21, 60, 1000, 2000);
-        }
-
-        if (pitch >= -20 && pitch <=20) {
-         channels[PITCH] = 1000; 
-        }
-        else if (pitch >=-60 && pitch <=-21) {
-        channels[PITCH] = mapFloatToInt(pitch, -50, -21, 0, 1000);
-        }
-        else if (pitch >=21 && pitch <=60) {
-        channels[PITCH] = mapFloatToInt(pitch, 21, 60, 1000, 2000);
-        }
-
-        int R=kalmanFilterMulti(channels[ROLL],6);
-        ESP_LOGI("OUT", "RAW: %d | OK: %d", channels[ROLL], R);
-
-        vTaskDelay(pdMS_TO_TICKS(10));
+    vTaskDelay(pdMS_TO_TICKS(2));
     }
 }
 
@@ -304,10 +246,12 @@ void elrs_task(void *pvParameters) {
     }
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
 void logS() {
     while(1) {
-    ESP_LOGI("OUT", "Roll: %d | Pitch: %d", channels[ROLL],channels[PITCH]);
+    ESP_LOGI("OUT", "ARM: %d | CAM: %d | ID: %d | FAIL: %d | mV: %d | m: %d", channels[AUX1],channels[AUX2],current_id,channels[AUX4],max_mechanism_value,channels[MECHANISM_CHANNEL]);
+    // printf("THROTTLE = %d | ROLL = %d | YAW = %d | PITCH = %d\n", channels[THROTTLE],channels[ROLL],channels[YAW],channels[PITCH]);
+    // fflush(stdout);
     vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
@@ -316,6 +260,7 @@ void app_main(void) {
     uart_init();
     timer_init();
     button_init();
+    
 
     button_register(RIGHT_POINT);
     button_register(RIGHT_MIDDLE);
@@ -326,40 +271,8 @@ void app_main(void) {
     button_register(LEFT_RING);
     button_register(LEFT_LITTLE);
 
-    spi_bus_config_t bus_config = {
-        .sclk_io_num = PIN_NUM_CLK,
-        .mosi_io_num = PIN_NUM_MOSI,
-        .miso_io_num = PIN_NUM_MISO,
-        .quadwp_io_num = -1,
-        .quadhd_io_num = -1,
-    };
-    ESP_ERROR_CHECK(spi_bus_initialize(SPI_BUS, &bus_config, SPI_DMA_CH_AUTO));
-
-    spi_device_interface_config_t dev_configA = {
-        .command_bits = 8,
-        .address_bits = 0,
-        .clock_speed_hz = 1000000,
-        .mode = 0,                
-        .spics_io_num = PIN_NUM_CSA,
-        .queue_size = 1,
-        .flags = SPI_DEVICE_HALFDUPLEX, 
-    };
-    ESP_ERROR_CHECK(spi_bus_add_device(SPI_BUS, &dev_configA, &spi_handleA));
-
-    spi_device_interface_config_t dev_configB = {
-        .command_bits = 8,
-        .address_bits = 0,
-        .clock_speed_hz = 1000000,
-        .mode = 0,                
-        .spics_io_num = PIN_NUM_CSB,
-        .queue_size = 1,
-        .flags = SPI_DEVICE_HALFDUPLEX, 
-    };
-    ESP_ERROR_CHECK(spi_bus_add_device(SPI_BUS, &dev_configB, &spi_handleB));
-
-    xTaskCreatePinnedToCore(left_imu_task, "left_imu", 4096, NULL, 4, NULL, 1);
-    xTaskCreatePinnedToCore(right_imu_task, "right_imu", 4096, NULL, 4, NULL, 1);
-    // xTaskCreatePinnedToCore(logS, "log", 4096, NULL, 4, NULL, 1);
+    xTaskCreatePinnedToCore(imu_task, "right_imu", 4096, NULL, 4, NULL, 1);
+    xTaskCreatePinnedToCore(logS, "log", 4096, NULL, 4, NULL, 1);
     xTaskCreatePinnedToCore(button_control, "button", 4096, NULL, 4, NULL, 1);
     xTaskCreatePinnedToCore(elrs_task, "elrs_writer", 4096, NULL, tskIDLE_PRIORITY, NULL, 0);
 }
