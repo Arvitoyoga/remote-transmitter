@@ -22,11 +22,7 @@ void filter_set_gains(filter_t *f, float Kp, float Ki);
 void filter_update_raw(filter_t *f,
                        float ax_raw, float ay_raw, float az_raw,
                        float gx_raw, float gy_raw, float gz_raw);
-<<<<<<< HEAD
-void filter_get_euler(filter_t *f, float *roll_deg, float *pitch_deg, float *yaw_deg);
-=======
 void filter_get_euler(filter_t *imu_right, filter_t *imu_left, float *roll, float *pitch, float *yaw, float *throttle);
->>>>>>> upstream/master
 void filter_set_deadzone(filter_t *f, float deg);
 
 #ifdef __cplusplus

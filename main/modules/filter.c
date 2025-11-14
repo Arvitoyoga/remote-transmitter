@@ -97,36 +97,6 @@ void filter_update_raw(filter_t *f,
     f->q0 *= invNorm; f->q1 *= invNorm; f->q2 *= invNorm; f->q3 *= invNorm;
 }
 
-<<<<<<< HEAD
-// ====== Ambil Euler dengan Deadzone ======
-void filter_get_euler(filter_t *f, float *roll_deg, float *pitch_deg, float *yaw_deg)
-{
-    if (!f) return;
-
-    float roll = atan2f(2.0f*(f->q0*f->q1 + f->q2*f->q3),
-                        1 - 2.0f*(f->q1*f->q1 + f->q2*f->q2));
-    float pitch = asinf(2.0f*(f->q0*f->q2 - f->q3*f->q1));
-    float yaw = atan2f(2.0f*(f->q0*f->q3 + f->q1*f->q2),
-                       1 - 2.0f*(f->q2*f->q2 + f->q3*f->q3));
-
-    roll *= RAD2DEG(1.0f);
-    pitch *= RAD2DEG(1.0f);
-    yaw *= RAD2DEG(1.0f);
-
-    if (fabsf(roll - f->last_roll) < f->euler_deadzone) roll = f->last_roll;
-    else f->last_roll = roll;
-
-    if (fabsf(pitch - f->last_pitch) < f->euler_deadzone) pitch = f->last_pitch;
-    else f->last_pitch = pitch;
-
-    if (fabsf(yaw - f->last_yaw) < f->euler_deadzone) yaw = f->last_yaw;
-    else f->last_yaw = yaw;
-
-    if (roll_deg)  *roll_deg = roll;
-    if (pitch_deg) *pitch_deg = pitch;
-    if (yaw_deg)   *yaw_deg = yaw;
-}
-=======
 void filter_get_euler(filter_t *imu_right, filter_t *imu_left, float *roll, float *pitch, float *yaw, float *throttle){
     float roll_input  = 2.0f * (imu_right->q0 * imu_right->q1 + imu_right->q2 * imu_right->q3);
     float pitch_input = 2.0f * (imu_right->q1 * imu_right->q3 - imu_right->q0 * imu_right->q2);
@@ -169,4 +139,3 @@ void filter_get_euler(filter_t *imu_right, filter_t *imu_left, float *roll, floa
 //     if (pitch_deg) *pitch_deg = pitch;
 //     if (yaw_deg)   *yaw_deg = yaw;
 // }
->>>>>>> upstream/master
