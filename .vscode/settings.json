@@ -27,5 +27,8 @@
 	},
 	"idf.portWin": "COM4",
 	"idf.flashType": "UART",
-	"idf.port": "/dev/ttyUSB0"
+	"idf.port": "/dev/ttyUSB0",
+	"python-envs.defaultEnvManager": "ms-python.python:conda",
+	"python-envs.defaultPackageManager": "ms-python.python:conda",
+	"python-envs.pythonProjects": []
 }

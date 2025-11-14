@@ -39,6 +39,10 @@
 
 #define DRONE_COUNT 3
 
+
+#define RAD2DEG(x) ((x) * 57.2957795131f) // 180.0f / PI
+
+
 filter_t imu_left;
 filter_t imu_right;
 uint16_t channels[16] = { 0 };
@@ -81,7 +85,8 @@ void button_control () {
     switch (shift)
     {
     case 0:
-        R_Point = button_check_hold_release(0,500,500);
+        // R_Point = button_check_hold_release(0,500,500);
+        R_Point = button_toggle(0);
         channels[ARMING_CHANNEL] = (R_Point == 0) ? 1000 : MAX_CHANNEL_VALUE;
 
         R_Mid = button_toggle(1);
@@ -142,12 +147,12 @@ void imu_task(void *pvParameters)
     // update filter
     filter_update_raw(&imu_right,imuR.ax, imuR.ay, imuR.az, imuR.gx, imuR.gy, imuR.gz);
     filter_update_raw(&imu_left,imuL.ax, imuL.ay, imuL.az, imuL.gx, imuL.gy, imuL.gz);
+    
+    float roll, pitch, yaw, throttle;
 
-    float roll, pitch, ncA;
-    filter_get_euler(&imu_right,&roll, &pitch, &ncA);
-    float yaw, throttle, ncB;
-    filter_get_euler(&imu_left,&yaw, &throttle, &ncB);
-
+    filter_get_euler(&imu_right, &imu_left, &roll, &pitch, &yaw, &throttle);
+    
+    
         // Mapping ROLL
         if (roll >= -10 && roll <= 10) {
             channels[ROLL] = 1000; 
@@ -163,12 +168,13 @@ void imu_task(void *pvParameters)
         if (pitch >= -10 && pitch <= 10) {
             channels[PITCH] = 1000; 
         }
-        else if (pitch >= -60 && pitch <= -21) {
+        else if (pitch >= -90 && pitch <= -21) {
             channels[PITCH] = mapFloatToInt(pitch, -60, -21, 0, 1000);
         }
-        else if (pitch >= 21 && pitch <= 60) {
+        else if (pitch >= 21 && pitch <= 90) {
             channels[PITCH] = mapFloatToInt(pitch, 21, 60, 1000, 2000);
         }
+    // }
 
         // Mapping THROTTLE
         if (throttle <= -50) {
@@ -249,8 +255,8 @@ void elrs_task(void *pvParameters) {
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void logS() {
     while(1) {
-    ESP_LOGI("OUT", "ARM: %d | CAM: %d | ID: %d | FAIL: %d | mV: %d | m: %d", channels[AUX1],channels[AUX2],current_id,channels[AUX4],max_mechanism_value,channels[MECHANISM_CHANNEL]);
-    // printf("THROTTLE = %d | ROLL = %d | YAW = %d | PITCH = %d\n", channels[THROTTLE],channels[ROLL],channels[YAW],channels[PITCH]);
+    // ESP_LOGI("OUT", "ARM: %d | CAM: %d | ID: %d | FAIL: %d | mV: %d | m: %d", channels[AUX1],channels[AUX2],current_id,channels[AUX4],max_mechanism_value,channels[MECHANISM_CHANNEL]);
+    printf("THROTTLE = %d | ROLL = %d | YAW = %d | PITCH = %d\n", channels[THROTTLE],channels[ROLL],channels[YAW],channels[PITCH]);
     // fflush(stdout);
     vTaskDelay(pdMS_TO_TICKS(10));
     }
