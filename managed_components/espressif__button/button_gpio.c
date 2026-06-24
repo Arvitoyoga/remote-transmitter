@@ -17,7 +17,8 @@ static const char *TAG = "gpio button";
         return (ret_val);                                         \
     }
 
-esp_err_t button_gpio_init(const button_gpio_config_t *config) {
+esp_err_t button_gpio_init(const button_gpio_config_t *config)
+{
     GPIO_BTN_CHECK(NULL != config, "Pointer of config is invalid", ESP_ERR_INVALID_ARG);
     GPIO_BTN_CHECK(GPIO_IS_VALID_GPIO(config->gpio_num), "GPIO number error", ESP_ERR_INVALID_ARG);
 
@@ -69,15 +70,18 @@ esp_err_t button_gpio_init(const button_gpio_config_t *config) {
     return ESP_OK;
 }
 
-esp_err_t button_gpio_deinit(int gpio_num) {
+esp_err_t button_gpio_deinit(int gpio_num)
+{
     return gpio_reset_pin(gpio_num);;
 }
 
-uint8_t button_gpio_get_key_level(void *gpio_num) {
+uint8_t button_gpio_get_key_level(void *gpio_num)
+{
     return (uint8_t)gpio_get_level((uint32_t)gpio_num);
 }
 
-esp_err_t button_gpio_set_intr(int gpio_num, gpio_int_type_t intr_type, gpio_isr_t isr_handler, void *args) {
+esp_err_t button_gpio_set_intr(int gpio_num, gpio_int_type_t intr_type, gpio_isr_t isr_handler, void *args)
+{
     static bool isr_service_installed = false;
     gpio_set_intr_type(gpio_num, intr_type);
     if (!isr_service_installed) {
@@ -88,7 +92,8 @@ esp_err_t button_gpio_set_intr(int gpio_num, gpio_int_type_t intr_type, gpio_isr
     return ESP_OK;
 }
 
-esp_err_t button_gpio_intr_control(int gpio_num, bool enable) {
+esp_err_t button_gpio_intr_control(int gpio_num, bool enable)
+{
     if (enable) {
         gpio_intr_enable(gpio_num);
     } else {
@@ -97,7 +102,8 @@ esp_err_t button_gpio_intr_control(int gpio_num, bool enable) {
     return ESP_OK;
 }
 
-esp_err_t button_gpio_enable_gpio_wakeup(uint32_t gpio_num, uint8_t active_level, bool enable) {
+esp_err_t button_gpio_enable_gpio_wakeup(uint32_t gpio_num, uint8_t active_level, bool enable)
+{
     esp_err_t ret;
     if (enable) {
         ret = gpio_wakeup_enable(gpio_num, active_level == 0 ? GPIO_INTR_LOW_LEVEL : GPIO_INTR_HIGH_LEVEL);
