@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
@@ -23,6 +25,7 @@
 
 // ELRS
 #define INTERVALMS 3 * 1000 // in microseconds
+#define SIM_OUTPUT_INTERVAL_MS 20
 
 #define UART_NUM UART_NUM_2
 #define TX_PIN 17
@@ -81,33 +84,63 @@ bool should_switch = 1;
 
 uint16_t max_mechanism_value = 1378;
 
+static int read_active_low_button(gpio_num_t gpio) {
+    return gpio_get_level(gpio) == 0;
+}
+
+static void sim_input_init(void) {
+    gpio_config_t gpio_conf = {
+        .pin_bit_mask = (1ULL << LEFT_POINT),
+        .mode = GPIO_MODE_INPUT,
+        .pull_up_en = GPIO_PULLUP_ENABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+
+    gpio_config(&gpio_conf);
+}
+
 // crsf_data_t crsf_data = {0};
 // pid_controller_t yaw_pid;
 
 // Callbacks
 void toggle_channel(void *arg, void *data) {
+    (void)arg;
+
     crsf_channels_type channel = (crsf_channels_type)data;
     channels[channel] = (channels[channel] <= 1000) * MAX_CHANNEL_VALUE;
     ESP_LOGI("gpio", "channel %d = %d", channel, channels[channel]);
 }
 
-void toggle_channel_mechanism() {
+void toggle_channel_mechanism(void *arg, void *data) {
+    (void)arg;
+    (void)data;
+
     channels[MECHANISM_CHANNEL] = (channels[MECHANISM_CHANNEL] <= 100) * max_mechanism_value;
     ESP_LOGI("gpio", "channel %d = %d", MECHANISM_CHANNEL, channels[MECHANISM_CHANNEL]);
 }
 
 
-void increment_max_mechanism() {
+void increment_max_mechanism(void *arg, void *data) {
+    (void)arg;
+    (void)data;
+
     max_mechanism_value += MECHANISM_CHANGE;
     ESP_LOGI("gpio", "max mech = %d", max_mechanism_value);
 }
 
-void decrement_max_mechanism() {
+void decrement_max_mechanism(void *arg, void *data) {
+    (void)arg;
+    (void)data;
+
     max_mechanism_value -= MECHANISM_CHANGE;
     ESP_LOGI("gpio", "max mech = %d", max_mechanism_value);
 }
 
-void toggle_arming() {
+void toggle_arming(void *arg, void *data) {
+    (void)arg;
+    (void)data;
+
     if (iot_button_get_ticks_time(arming_button) < 500) return;
 
     channels[ARMING_CHANNEL] = (channels[ARMING_CHANNEL] <= 1000) * MAX_CHANNEL_VALUE;
@@ -115,7 +148,10 @@ void toggle_arming() {
 }
 
 
-void switch_id_cb() {
+void switch_id_cb(void *arg, void *data) {
+    (void)arg;
+    (void)data;
+
     if (iot_button_get_ticks_time(switch_id_button) < 500) return;
 
     should_switch = 1;
@@ -209,7 +245,9 @@ void i2c_init() {
 }
 
 // Tasks
-void left_imu_task() {
+void left_imu_task(void *pvParameters) {
+    (void)pvParameters;
+
     struct full_imu_data left_imu_data = create_full_imu_data();
     mpu6050_handle_t imu = imu_init(I2C_NUM_0, MPU6050_I2C_ADDRESS_1);
 
@@ -268,7 +306,9 @@ void left_imu_task() {
     }
 }
 
-void right_imu_task() {
+void right_imu_task(void *pvParameters) {
+    (void)pvParameters;
+
     struct full_imu_data right_imu_data = create_full_imu_data();
     mpu6050_handle_t imu = imu_init(I2C_NUM_0, MPU6050_I2C_ADDRESS);
 
@@ -321,6 +361,8 @@ void right_imu_task() {
     }
 }
 void elrs_task(void *pvParameters) {
+    (void)pvParameters;
+
     uint8_t packet[MAX_PACKET_LENGTH] = { 0 };
     // uint8_t buffer[256] = {0};
     // size_t len = 0;
@@ -362,8 +404,28 @@ void elrs_task(void *pvParameters) {
 
 
 
+void sim_output_task(void *pvParameters) {
+    (void)pvParameters;
+
+    while (true) {
+        if (left_calibrated && right_calibrated) {
+            printf("SIM,%u,%u,%u,%u,%d,%d\n",
+                (unsigned)channels[THROTTLE],
+                (unsigned)channels[ROLL],
+                (unsigned)channels[PITCH],
+                (unsigned)channels[YAW],
+                read_active_low_button(LEFT_POINT),
+                read_active_low_button(RIGHT_POINT));
+            fflush(stdout);
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(SIM_OUTPUT_INTERVAL_MS));
+    }
+}
+
 void app_main(void) {
     gpio_init();
+    sim_input_init();
     uart_init();
     i2c_init();
     timer_init();
@@ -371,4 +433,5 @@ void app_main(void) {
     xTaskCreatePinnedToCore(left_imu_task, "left_imu", 4096, NULL, 4, NULL, 1);
     xTaskCreatePinnedToCore(right_imu_task, "right_imu", 4096, NULL, 4, NULL, 1);
     xTaskCreatePinnedToCore(elrs_task, "elrs_writer", 4096, NULL, tskIDLE_PRIORITY, NULL, 0);
+    xTaskCreatePinnedToCore(sim_output_task, "sim_output", 4096, NULL, tskIDLE_PRIORITY, NULL, 0);
 }
