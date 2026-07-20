@@ -1,0 +1,1625 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt"
+    message: |
+      The system is: Linux - 7.0.0-28-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      cc: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      cc: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      cc: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      cc: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      cc: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      cc: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--c++’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--ec++’; did you mean ‘-Weffc++’?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      c++: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--c++’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--ec++’; did you mean ‘-Weffc++’?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      c++: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+      c++: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+      c++: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-NHN4SY"
+      binary: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-NHN4SY"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-NHN4SY'
+        
+        Run Build Command(s): /home/arvito/.espressif/tools/ninja/1.12.1/ninja -v cmTC_e9a22
+        [1/2] /usr/bin/cc    -o CMakeFiles/cmTC_e9a22.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        FAILED: CMakeFiles/cmTC_e9a22.dir/CMakeCCompilerABI.c.o 
+        /usr/bin/cc    -o CMakeFiles/cmTC_e9a22.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        as: unrecognized option '--64'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /usr/bin/cc"
+    directories:
+      source: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-gG3FSc"
+      binary: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-gG3FSc"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-gG3FSc'
+        
+        Run Build Command(s): /home/arvito/.espressif/tools/ninja/1.12.1/ninja -v cmTC_050d0
+        [1/2] /usr/bin/cc    -o CMakeFiles/cmTC_050d0.dir/testCCompiler.c.o -c /home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-gG3FSc/testCCompiler.c
+        FAILED: CMakeFiles/cmTC_050d0.dir/testCCompiler.c.o 
+        /usr/bin/cc    -o CMakeFiles/cmTC_050d0.dir/testCCompiler.c.o -c /home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-gG3FSc/testCCompiler.c
+        as: unrecognized option '--64'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      cc: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      cc: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      cc: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      cc: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      cc: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      cc: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--c++’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--ec++’; did you mean ‘-Weffc++’?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      c++: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--c++’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--ec++’; did you mean ‘-Weffc++’?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      c++: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+      c++: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+      c++: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-epbRuK"
+      binary: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-epbRuK"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-epbRuK'
+        
+        Run Build Command(s): /home/arvito/.espressif/tools/ninja/1.12.1/ninja -v cmTC_c51c4
+        [1/2] /usr/bin/cc    -o CMakeFiles/cmTC_c51c4.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        FAILED: CMakeFiles/cmTC_c51c4.dir/CMakeCCompilerABI.c.o 
+        /usr/bin/cc    -o CMakeFiles/cmTC_c51c4.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        as: unrecognized option '--64'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /usr/bin/cc"
+    directories:
+      source: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-0IwLny"
+      binary: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-0IwLny"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-0IwLny'
+        
+        Run Build Command(s): /home/arvito/.espressif/tools/ninja/1.12.1/ninja -v cmTC_0b3af
+        [1/2] /usr/bin/cc    -o CMakeFiles/cmTC_0b3af.dir/testCCompiler.c.o -c /home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-0IwLny/testCCompiler.c
+        FAILED: CMakeFiles/cmTC_0b3af.dir/testCCompiler.c.o 
+        /usr/bin/cc    -o CMakeFiles/cmTC_0b3af.dir/testCCompiler.c.o -c /home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-0IwLny/testCCompiler.c
+        as: unrecognized option '--64'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt"
+    message: |
+      The system is: Linux - 7.0.0-28-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      cc: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      cc: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      cc: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      cc: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      cc: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      cc: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--c++’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--ec++’; did you mean ‘-Weffc++’?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      c++: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--c++’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      1
+      c++: error: unrecognized command-line option ‘--ec++’; did you mean ‘-Weffc++’?
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      c++: warning: ‘-mcpu=’ is deprecated; use ‘-mtune=’ or ‘-march=’ instead
+      c++: error: unrecognized command-line option ‘--target=arm-arm-none-eabi’
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      as: unrecognized option '--64'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+      c++: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1144 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+      c++: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-axdVbw"
+      binary: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-axdVbw"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-axdVbw'
+        
+        Run Build Command(s): /home/arvito/.espressif/tools/ninja/1.12.1/ninja -v cmTC_9a794
+        [1/2] /usr/bin/cc    -o CMakeFiles/cmTC_9a794.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        FAILED: CMakeFiles/cmTC_9a794.dir/CMakeCCompilerABI.c.o 
+        /usr/bin/cc    -o CMakeFiles/cmTC_9a794.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        as: unrecognized option '--64'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt"
+    checks:
+      - "Check for working C compiler: /usr/bin/cc"
+    directories:
+      source: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-GqcXzP"
+      binary: "/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-GqcXzP"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-GqcXzP'
+        
+        Run Build Command(s): /home/arvito/.espressif/tools/ninja/1.12.1/ninja -v cmTC_34c38
+        [1/2] /usr/bin/cc    -o CMakeFiles/cmTC_34c38.dir/testCCompiler.c.o -c /home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-GqcXzP/testCCompiler.c
+        FAILED: CMakeFiles/cmTC_34c38.dir/testCCompiler.c.o 
+        /usr/bin/cc    -o CMakeFiles/cmTC_34c38.dir/testCCompiler.c.o -c /home/arvito/Documents/Codes/remote-transmitter/main/build/CMakeFiles/CMakeScratch/TryCompile-GqcXzP/testCCompiler.c
+        as: unrecognized option '--64'
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...

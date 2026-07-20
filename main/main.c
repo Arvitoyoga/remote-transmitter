@@ -19,6 +19,9 @@
 #include "esp_timer.h"
 #include "esp_log.h"
 
+#undef ESP_LOGI
+#define ESP_LOGI(tag, format, ...) ((void)0)
+
 #define TAG "main"
 
 #define DRONE_COUNT 2
@@ -83,6 +86,10 @@ bool should_transmit = 0;
 bool should_switch = 1;
 
 uint16_t max_mechanism_value = 1378;
+float last_left_imu_y = 0.0f;
+float last_left_imu_x = 0.0f;
+float last_right_imu_y = 0.0f;
+float last_right_imu_x = 0.0f;
 
 static int read_active_low_button(gpio_num_t gpio) {
     return gpio_get_level(gpio) == 0;
@@ -290,8 +297,11 @@ void left_imu_task(void *pvParameters) {
         channels[YAW] = mapValue(left_imu_data.processed.y, -45, 45, MAX_CHANNEL_VALUE, 0);
 
 
+        last_left_imu_y = left_imu_data.processed.y;
+        last_left_imu_x = left_imu_data.processed.x;
+
         if (imu_stuck_counter > IMU_STUCK_THRESHOLD) {
-            ESP_LOGI("imu left", "y%.2fx%.2f", left_imu_data.processed.y, left_imu_data.processed.x);
+            /* Consolidated log emitted by the right IMU task to keep output on one line. */
         } else if (channels[THROTTLE] > 0 && channels[THROTTLE] < MAX_CHANNEL_VALUE) {
             if (channels[THROTTLE] == last_throttle) {
                 imu_stuck_counter++;
@@ -326,7 +336,7 @@ void right_imu_task(void *pvParameters) {
 
     while (true) {
         if (!imu_read(imu, &right_imu_data)) {
-            ESP_LOGE("imu right", "err right imu, R=%d, P=%d", channels[ROLL], channels[PITCH]);
+            // ESP_LOGE("imu right", "err right imu, R=%d, P=%d", channels[ROLL], channels[PITCH]);
 
             if (!channels[FAILSAFE_CHANNEL]) {
                 right_error++;
@@ -353,8 +363,12 @@ void right_imu_task(void *pvParameters) {
         channels[ROLL] = mapValue(right_imu_data.processed.y, -45, 45, MAX_CHANNEL_VALUE, 0);
         channels[PITCH] = mapValue(right_imu_data.processed.x, -45, 45, MAX_CHANNEL_VALUE, 0);
 
+        last_right_imu_y = right_imu_data.processed.y;
+        last_right_imu_x = right_imu_data.processed.x;
+
         if (imu_stuck_counter > IMU_STUCK_THRESHOLD) {
-            ESP_LOGI("imu right", "y%.2fx%.2f", right_imu_data.processed.y, right_imu_data.processed.x);
+            ESP_LOGI(TAG, "IMU stuck -> left y=%.2f x=%.2f | right y=%.2f x=%.2f",
+                last_left_imu_y, last_left_imu_x, last_right_imu_y, last_right_imu_x);
         }
 
         vTaskDelay(pdMS_TO_TICKS(10));
@@ -408,16 +422,14 @@ void sim_output_task(void *pvParameters) {
     (void)pvParameters;
 
     while (true) {
-        if (left_calibrated && right_calibrated) {
-            printf("SIM,%u,%u,%u,%u,%d,%d\n",
-                (unsigned)channels[THROTTLE],
-                (unsigned)channels[ROLL],
-                (unsigned)channels[PITCH],
-                (unsigned)channels[YAW],
-                read_active_low_button(LEFT_POINT),
-                read_active_low_button(RIGHT_POINT));
-            fflush(stdout);
-        }
+        printf("SIM,%u,%u,%u,%u,%d,%d\n",
+            (unsigned)channels[THROTTLE],
+            (unsigned)channels[ROLL],
+            (unsigned)channels[PITCH],
+            (unsigned)channels[YAW],
+            read_active_low_button(LEFT_POINT),
+            read_active_low_button(RIGHT_POINT));
+        fflush(stdout);
 
         vTaskDelay(pdMS_TO_TICKS(SIM_OUTPUT_INTERVAL_MS));
     }

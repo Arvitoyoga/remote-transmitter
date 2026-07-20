@@ -4,6 +4,9 @@
 #include "esp_log.h"
 #include <string.h> 
 
+#undef ESP_LOGI
+#define ESP_LOGI(tag, format, ...) ((void)0)
+
 #define TAG "ELRS"
 
 #define CRSF_CRC_POLY 0xD5

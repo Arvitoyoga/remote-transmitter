@@ -27,6 +27,6 @@
 	},
 	"idf.portWin": "COM3",
 	"idf.flashType": "UART",
-	"idf.port": "/dev/ttyUSB0",
+	"idf.port": "/dev/ttyACM0",
 	"idf.currentSetup": "/home/arvito/.espressif/v6.0.2/esp-idf"
 }
